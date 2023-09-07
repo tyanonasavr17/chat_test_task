@@ -1,0 +1,30 @@
+<div class="sidebar">
+  <h1>Список чатов</h1>
+  <ul id="chat-list">
+    <% @chats.each do |chat| %>
+      <li class="chat-item">
+        <%= link_to chat.name, chat_path(chat), remote: true %>
+      </li>
+    <% end %>
+  </ul>
+  <div class="create-chat">
+    <div id="create-chat-button">
+      <div class="plus">+</div>
+    </div>
+    <div class="tooltip">Создать чат</div>
+  </div>
+</div>
+
+<div id="create-chat-form" class="hidden">
+  <div class="close-form" id="close-chat-form">×</div>
+  <%= form_tag(chats_path, method: :post, remote: true) do %>
+    <div class="field">
+      <%= label_tag :name, 'Название чата:' %>
+      <%= text_field_tag :name %>
+    </div>
+    <div class="actions">
+      <%= submit_tag 'Создать чат' %>
+    </div>
+    <%= turbo_stream_from @chats %>
+  <% end %>
+</div>

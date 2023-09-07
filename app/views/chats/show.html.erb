@@ -1,0 +1,21 @@
+<div class="chat-overlay" id="chat-overlay">
+  <div class="chat-box">
+    <div class="chat-header">
+      <h2><%= @chat.name %></h2>
+      <span class="close-button" id="close-button">×</span>
+    </div>
+    <div class="chat-messages">
+      <% @messages.each do |message| %>
+        <div class="message"><%= message.content %></div>
+      <% end %>
+    </div>
+    <%= form_with(model: [@chat, @message], remote: true) do |form| %>
+      <div class="field">
+        <%= form.text_field :content %>
+      </div>
+      <div class="actions">
+        <%= form.submit 'Отправить' %>
+      </div>
+    <% end %>
+  </div>
+</div>

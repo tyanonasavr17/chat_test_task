@@ -1,0 +1,17 @@
+<% if @chat.persisted? %>
+var chatId = <%= @chat.id %>;
+var chatName = "<%= @chat.name %>";
+var chatLink = "<%= chat_path(@chat) %>";
+
+
+var chatList = document.getElementById("chat-list");
+var newChatLink = document.createElement("a");
+newChatLink.href = chatLink;
+newChatLink.textContent = chatName;
+chatList.appendChild(newChatLink);
+
+
+document.getElementById("chat_name").value = '';
+
+<% else %>
+<% end %>

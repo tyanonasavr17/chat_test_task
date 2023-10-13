@@ -19,6 +19,11 @@ class ChatsController < ApplicationController
     end
   end
 
+  def all_chats
+    @all_chats = Chat.all
+    render json: @all_chats
+  end
+
   private
 
   def chat_params

@@ -1,7 +1,7 @@
 init:
 	docker-compose build
 	docker-compose up -d db
-	docker-compose run --rm chat_test_task rails db:create db:migrate
+	docker-compose run --rm chat_test_task rails db:create db:migrate db:seed
 	mkdir -p tmp/pids
 	docker-compose up -d
 
@@ -22,4 +22,4 @@ bash:
 
 reload_data:
 	docker-compose up -d db
-	docker-compose run --rm chat_test_task rails db:drop db:create db:migrate
+	docker-compose run --rm chat_test_task rails db:drop db:create db:migrate db:seed

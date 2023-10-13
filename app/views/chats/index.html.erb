@@ -4,6 +4,7 @@
     <% @chats.each do |chat| %>
       <li class="chat-item">
         <%= link_to chat.name, chat_path(chat), remote: true %>
+        <span class="new-messages-indicator" style="display: none;"></span>
       </li>
     <% end %>
   </ul>

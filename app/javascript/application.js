@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-document.addEventListener("turbo:submit-end", (event) => {
+document.addEventListener("turbo:load", (event) => {
     if (event.detail.targetFrame.dataset.turboFrame === "chat_messages") {
         const message = event.target.querySelector("#message_content").value;
 
@@ -43,4 +43,20 @@ document.addEventListener("turbo:submit-end", (event) => {
     closeButton.addEventListener("click", function () {
         chatOverlay.style.display = "none";
     });
+});
+
+function playNotificationSound() {
+    const audio = new Audio('./app/assets/sounds/notification.mp3');
+    audio.play();
+}
+
+document.addEventListener("turbo:load", function () {
+    function handleNewMessage(chatId) {
+        const indicator = document.querySelector(`#chat-list li[data-chat-id="${chatId}"] .new-messages-indicator`);
+        indicator.style.display = "block";
+
+        playNotificationSound();
+    }
+
+    handleNewMessage(chatId);
 });
